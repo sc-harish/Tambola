@@ -7,8 +7,9 @@ class TambolaGame {
             Set<Integer> announcedNumbers = InputHandler.getAnnouncedNumbers(scanner);
             TambolaTicket ticket = InputHandler.getTicket(scanner);
             String claim = InputHandler.getClaim(scanner);
+
             boolean result = ClaimValidator.validate(claim, ticket, announcedNumbers);
-            System.out.println(result ? "Accepted" : "Rejected");
+            System.out.println(result == true ? "Accepted" : "Rejected");
         } catch (NumberFormatException e) {
             System.err.println("Invalid number format: " + e.getMessage());
         } catch (IllegalArgumentException e) {

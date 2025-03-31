@@ -16,8 +16,9 @@ class InputHandler {
     }
 
     public static TambolaTicket getTicket(Scanner scanner) throws NumberFormatException {
+        // Assuming the ticket contains 3 rows and 5 columns with a total of 15 numbers
         int[][] ticket = new int[3][5];
-        System.out.println("Enter the ticket (3x5 grid, use _ for empty):");
+        System.out.println("Enter the ticket and use _ for empty");
         for (int i = 0; i < 3; i++) {
             String[] row = scanner.nextLine().split(",");
             for (int j = 0; j < 5; j++) {

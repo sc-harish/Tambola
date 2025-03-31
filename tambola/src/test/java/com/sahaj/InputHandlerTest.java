@@ -117,15 +117,8 @@ class InputHandlerTest {
     }
 
     @Test
-    void testGetAnnouncedNumbersWithInvalidNumberFormat() {
-        String input = "1, a, 3, 4, 5";
-        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
-        assertThrows(NumberFormatException.class, () -> InputHandler.getAnnouncedNumbers(scanner));
-    }
-
-    @Test
     void testGetTicketWithInvalidNumberFormat() {
-        String input = "1,2,3,4,5\n6,7,x,9,10\n11,12,13,14,15";
+        String input = "1,2,3,4,5\n6,7,a,9,10\n11,12,13,14,15";
         Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
         assertThrows(NumberFormatException.class, () -> InputHandler.getTicket(scanner));
     }

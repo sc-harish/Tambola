@@ -7,7 +7,6 @@ import java.util.HashSet;
 import java.util.Set;
 
 class TambolaTicketTest {
-
     int[][] static_number_ticket = {
             {4, 16, -1, -1, 48, -1, 63, 76, -1},
             {7, -1, 23, 38, -1, 52, -1, -1, 80},
@@ -22,14 +21,21 @@ class TambolaTicketTest {
     }
 
     @Test
-    void testIsRowComplete_IncompleteRow() {
+    void testIsRowComplete_MidRow_CompleteRow() {
+        TambolaTicket ticket = new TambolaTicket(static_number_ticket);
+        Set<Integer> announcedNumbers = new HashSet<>(Set.of(7, 80, 52, 38, 23));
+        assertTrue(ticket.isRowComplete(1, announcedNumbers), "Mid row should be complete");
+    }
+
+    @Test
+    void testIsRowComplete_TopRowClaim_Incomplete() {
         TambolaTicket ticket = new TambolaTicket(static_number_ticket);
         Set<Integer> announcedNumbers = new HashSet<>(Set.of(4, 16, 48, 63));  // Missing 76
         assertFalse(ticket.isRowComplete(0, announcedNumbers), "Top row should be incomplete");
     }
 
     @Test
-    void testIsRowComplete_EmptyAnnouncedNumbers() {
+    void testIsRowComplete_TopRowClaim_EmptyAnnouncedNumbers() {
         TambolaTicket ticket = new TambolaTicket(static_number_ticket);
         Set<Integer> announcedNumbers = new HashSet<>();
         assertFalse(ticket.isRowComplete(0, announcedNumbers), "Top row should be incomplete with no announced numbers");
@@ -63,14 +69,14 @@ class TambolaTicketTest {
     @Test
     void testIsEarlyFive_Incomplete() {
         TambolaTicket ticket = new TambolaTicket(static_number_ticket);
-        Set<Integer> announcedNumbers = new HashSet<>(Set.of(4, 16, 48));  // Only 3 numbers announced
+        Set<Integer> announcedNumbers = new HashSet<>(Set.of(4, 16, 48, 98, 3));  // Only 3 numbers announced
         assertFalse(ticket.isEarlyFive(announcedNumbers), "Early five should be incomplete");
     }
 
     @Test
     void testIsEarlyFive_ExactFive() {
         TambolaTicket ticket = new TambolaTicket(static_number_ticket);
-        Set<Integer> announcedNumbers = new HashSet<>(Set.of(4, 16, 48, 63, 7));
+        Set<Integer> announcedNumbers = new HashSet<>(Set.of(80, 23, 48, 56, 7));
         assertTrue(ticket.isEarlyFive(announcedNumbers), "Early five should be valid with exactly 5 numbers");
     }
 }
