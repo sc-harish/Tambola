@@ -3,7 +3,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
 class InputHandler {
-    public static Set<Integer> getAnnouncedNumbers(Scanner scanner) {
+    public static Set<Integer> getAnnouncedNumbers(Scanner scanner) throws NumberFormatException {
         System.out.println("Enter announced numbers:");
         String[] announcedNumbersStr = scanner.nextLine().split(",");
         Set<Integer> announcedNumbers = new HashSet<>();
@@ -15,7 +15,7 @@ class InputHandler {
         return announcedNumbers;
     }
 
-    public static TambolaTicket getTicket(Scanner scanner) {
+    public static TambolaTicket getTicket(Scanner scanner) throws NumberFormatException {
         int[][] ticket = new int[3][5];
         System.out.println("Enter the ticket (3x5 grid, use _ for empty):");
         for (int i = 0; i < 3; i++) {
