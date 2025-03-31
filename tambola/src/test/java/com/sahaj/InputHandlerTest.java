@@ -6,6 +6,7 @@ import static org.mockito.Mockito.*;
 import org.junit.jupiter.api.Test;
 import java.util.Scanner;
 import java.util.Set;
+import java.io.ByteArrayInputStream;
 import java.util.HashSet;
 
 class InputHandlerTest {
@@ -113,5 +114,40 @@ class InputHandlerTest {
 
         String result = InputHandler.getClaim(scanner);
         assertEquals("", result, "An empty claim input should return an empty string.");
+    }
+
+    @Test
+    void testGetAnnouncedNumbersWithInvalidNumberFormat() {
+        String input = "1, a, 3, 4, 5";
+        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
+        assertThrows(NumberFormatException.class, () -> InputHandler.getAnnouncedNumbers(scanner));
+    }
+
+    @Test
+    void testGetTicketWithInvalidNumberFormat() {
+        String input = "1,2,3,4,5\n6,7,x,9,10\n11,12,13,14,15";
+        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
+        assertThrows(NumberFormatException.class, () -> InputHandler.getTicket(scanner));
+    }
+
+    @Test
+    void testGetTicketWithIncompleteInput() {
+        String input = "1,2,3,4\n6,7,_,9,10\n11,12,13,14,15";
+        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
+        assertThrows(ArrayIndexOutOfBoundsException.class, () -> InputHandler.getTicket(scanner));
+    }
+
+    @Test
+    void testGetTicketWithEmptyCells() {
+        String input = "_,_,_,_,_\n_,_,_,_,_\n_,_,_,_,_";
+        Scanner scanner = new Scanner(new ByteArrayInputStream(input.getBytes()));
+        TambolaTicket ticket = InputHandler.getTicket(scanner);
+
+        int[][] expected = {
+                {-1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1}
+        };
+        assertArrayEquals(expected, ticket.getTicket());
     }
 }
