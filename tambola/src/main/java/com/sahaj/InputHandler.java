@@ -1,7 +1,7 @@
+package com.sahaj;
 import java.util.HashSet;
 import java.util.Scanner;
 import java.util.Set;
-
 class InputHandler {
     public static Set<Integer> getAnnouncedNumbers(Scanner scanner) {
         System.out.println("Enter announced numbers:");

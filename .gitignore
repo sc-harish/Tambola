@@ -1,0 +1,43 @@
+# Java class files
+*.class
+
+# Log files
+*.log
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# IntelliJ IDEA files
+.idea/*
+*.iml
+*.ipr
+*.iws
+out/
+
+# Maven target folder
+# Ignore all files inside the target directory
+tambola/target/
+
+# Eclipse and VS Code files
+.project
+.classpath
+.settings/
+.vscode/
+
+# Temporary files
+*.tmp
+*.swp
+*.swo
+*~
+
+# OS generated files
+.DS_Store
+Thumbs.db
+
+# Maven build artifacts
+maven-archiver/
+maven-status/
+surefire-reports/
+

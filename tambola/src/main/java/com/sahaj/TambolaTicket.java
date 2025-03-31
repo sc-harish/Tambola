@@ -1,3 +1,5 @@
+package com.sahaj;
+
 import java.util.Set;
 
 class TambolaTicket {
@@ -40,5 +42,9 @@ class TambolaTicket {
             }
         }
         return false;
+    }
+
+    public int[][] getTicket() {
+        return ticket;
     }
 }

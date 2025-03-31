@@ -1,6 +1,7 @@
+package com.sahaj;
 import java.util.*;
 
-public class TambolaGame {
+class TambolaGame {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
 
